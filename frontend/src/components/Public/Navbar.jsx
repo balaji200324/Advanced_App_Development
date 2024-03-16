@@ -27,7 +27,7 @@ const Navbar = () => {
             <div className='w-1/4 text-2xl font-bold text-blue-950'>
                 FutuRe ThiNk
             </div>
-            <div className='w-1/4 flex flex-row justify-between items-center text-black-600 font-bold'>
+            <div className='w-1/4 flex flex-row justify-between items-center font-bold text-white'>
                 {links.map((link,index)=>(
                     <NavLink key={index} to={link.path} className='cursor-pointer'>
                         {link.name}
