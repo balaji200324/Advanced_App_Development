@@ -3,7 +3,7 @@ import React, { Suspense, lazy } from 'react'
 import Home from './pages/Home'
 import WebLayout from './layout/WebLayout'
 import Loading from './components/Public/Loading'
-import Aboutus from './components/Public/Aboutus'
+import Course from './pages/Course'
 import AdminDashboard from './pages/Admin/AdminDashboard'
 import UserDashboard from './pages/User/UserDashboard'
 
@@ -23,7 +23,7 @@ const App =()=> {
         <Route path="/login" element={<Login />}></Route>
         <Route path="/signup" element={<Signup />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
-        <Route path="/aboutus" element={<Aboutus />}></Route>
+        <Route path="/courses" element={<Course />}></Route>
       </Route>
 
       <Route element={<AdminDashboard/>}>

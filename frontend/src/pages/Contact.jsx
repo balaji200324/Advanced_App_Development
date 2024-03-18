@@ -6,10 +6,10 @@ const Contact = () => {
     <div className='h-[80vh] flex justify-center items-center'>
       <div className='container mx-auto px-6 w-full bg-slate-100 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700'>
       <div className='text-center mt-6 font-bold text-3xl'>Contact us</div>
-          <div className='mx-auto mt-8 max-w-xl sm:mt-20'>
+          <div className='mx-auto mt-8 px-4 w-full sm:mt-8 flex justify-center items-center'>
             <div className="grid grid-cols-1 gap-x-10 gap-y-10 sm:grid-cols-2">
               <div>
-                <div className="mt-2.5">
+                <div className=" mt-2.5">
                   <input
                     type="text"
                     placeholder='first-name'
