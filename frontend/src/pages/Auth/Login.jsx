@@ -91,7 +91,7 @@ const Login = () => {
 
   return (
     <>
-      <div className='h-[80vh] flex justify-center items-center'>
+      <div className='h-[95vh] flex justify-center items-center bg-gradient-to-r from-cyan-500 to-blue-500 ...'>
         <div className='h-[40vh] container mx-auto px-4 w-full  bg-slate-100 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700'>
 
           <div className='text-center mt-5 font-bold  '>

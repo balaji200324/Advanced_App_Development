@@ -22,9 +22,9 @@ const Navbar = () => {
         }
     ]
   return (
-    <div className='h-[5vh] w-screen flex flex-row justify-center items-center bg-emerald-400'>
+    <div className='h-[5vh] w-screen flex flex-row justify-center items-center bg-black '>
         <div className='w-[90%] h-full flex flex-row justify-between items-center'>
-            <div className='w-1/4 text-2xl font-bold text-blue-950'>
+            <div className='w-1/4 text-2xl font-bold text-white'>
                 FutuRe ThiNk
             </div>
             <div className='w-1/4 flex flex-row justify-between items-center font-bold text-white'>
