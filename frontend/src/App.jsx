@@ -15,6 +15,8 @@ import UserDashboard from './pages/User/UserDashboard'
 import UserList from './pages/Admin/courses/UserList'
 import Courses from './pages/Admin/courses/Courses'
 import UserLayout from './layout/UserLayout'
+import Enquiries from './pages/Admin/AdminEnqueryResponse'
+import AdminList from './pages/Admin/AdminList'
 
 
 const Signup =lazy(()=> import('./pages/Auth/Signup')) 
@@ -41,10 +43,13 @@ const App =()=> {
 
       <Route element={<AdminLayout/>}>
         <Route path="/admin/dashboard" element={<AdminDashboard/>}></Route>
+        <Route path="/admin/AdminList" element={<AdminList/>}></Route>
         <Route path="/admin/userlist" element={<UserList/>}></Route>
         <Route path="/admin/courses" element={<Courses/>}></Route>
         <Route path="/admin/profile" element={<AdminProfile/>}></Route>
         <Route path="/admin/paymentHistory" element={<PaymentHistory/>}></Route>
+        <Route path="/admin/enquires" element={<Enquiries/>}></Route>
+      
       </Route>
 
     <Route element={<UserLayout/>}>

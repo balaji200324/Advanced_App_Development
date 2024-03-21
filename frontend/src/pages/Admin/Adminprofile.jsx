@@ -1,85 +1,60 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from 'react';
+import { Avatar, Dropdown, Button } from 'flowbite-react';
+import { Avatar as MaterialAvatar } from '@material-tailwind/react';
 
 const AdminProfile = () => {
-  const [profile, setProfile] = useState({
-    name: "John Doe",
-    email: "john.doe@example.com",
-    photo: "https://example.com/profile-photo.jpg",
-    bio: "I am a software engineer and avid learner.",
-  });
+  const [profilePicture, setProfilePicture] = useState('');
 
-  const handleChange = (e) => {
-    setProfile({ ...profile, [e.target.name]: e.target.value });
+  const handleImageChange = (e) => {
+    setProfilePicture(e.target.files[0]);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Save changes to the server
+  const handleSave = () => {
+    if (profilePicture) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const base64 = event.target.result;
+        localStorage.setItem('profilePicture', base64);
+      };
+      reader.readAsDataURL(profilePicture);
+    } else {
+      localStorage.removeItem('profilePicture');
+    }
   };
+
+  useEffect(() => {
+    const storedProfilePicture = localStorage.getItem('profilePicture');
+    if (storedProfilePicture) {
+      setProfilePicture(storedProfilePicture);
+    }
+  }, []);
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Profile</h1>
-      <div className="flex">
-        <div className="w-1/6">
-          <img src={profile.photo} alt="Profile" className="w-full h-full rounded-full" />
+    <div className="flex h-screen bg-gray-100 absolute right-0top-0 w-[83%] overflow-y-scroll">
+      <div className="flex flex-col items-center justify-center h-screen">
+        <div className="text-center">
+          <h1 className="text-2xl font-bold mb-4">User Profile</h1>
+          <p className="text-gray-500 mb-8">Update your profile picture and information.</p>
         </div>
-        <div className="w-5/6 ml-4">
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label htmlFor="name" className="block text-gray-700 font-bold mb-2">
-                Name
-              </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                value={profile.name}
-                onChange={handleChange}
-                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
-                Email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={profile.email}
-                onChange={handleChange}
-                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="bio" className="block text-gray-700 font-bold mb-2">
-                Bio
-              </label>
-              <textarea
-                name="bio"
-                id="bio"
-                value={profile.bio}
-                onChange={handleChange}
-                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
-            <div className="mb-4">
-              <label htmlFor="photo" className="block text-gray-700 font-bold mb-2">
-                Photo
-              </label>
-              <input
-                type="file"
-                name="photo"
-                id="photo"
-                onChange={(e) => setProfile({ ...profile, photo: URL.createObjectURL(e.target.files[0]) })}
-                className="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-              />
-            </div>
-            <button type="submit" className="bg-blue-500 text-white py-2 px-4 rounded">
-              Save Changes
-            </button>
-          </form>
+        <div className="w-64 relative">
+          <MaterialAvatar
+            src={profilePicture || ''}
+            alt="Profile picture"
+            className="w-64 h-64 border-4 border-blue-500"
+          />
+          <label htmlFor="image-upload" className="absolute bottom-0 right-0 bg-blue-500 text-white py-1 px-2 rounded-full cursor-pointer">
+            <input id="image-upload" type="file" accept="image/*" onChange={handleImageChange} className="hidden" />
+            Change
+          </label>
+        </div>
+        <div className="w-64 mt-8">
+          <Dropdown label={<Avatar alt="User settings" img={profilePicture|| '/images/people/profile-picture-5.jpg'} />}>
+            <Dropdown.Item onClick={handleSave}>Save changes</Dropdown.Item>
+            <Dropdown.Item>Cancel</Dropdown.Item>
+          </Dropdown>
+          <p className="text-center mt-4 text-gray-500">
+            <Button onClick={() => setProfilePicture('')}>Remove current picture</Button>
+          </p>
         </div>
       </div>
     </div>

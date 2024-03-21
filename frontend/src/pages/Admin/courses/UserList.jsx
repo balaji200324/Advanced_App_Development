@@ -44,6 +44,8 @@ const UserList = () => {
     user.username.toLowerCase().includes(search.toLowerCase())
   );
 
+  
+
   return (
     <div className="flex h-screen bg-gray-100 absolute right-0 top-0 w-[83%] overflow-y-scroll">
       <div className="m-auto w-full max-w-xl bg-white rounded-xl p-8">
@@ -56,7 +58,7 @@ const UserList = () => {
             onChange={handleSearch}
             className="w-full shadow-md rounded-full p-3 focus:outline-none focus:ring-1 focus:ring-blue-300 focus:border-transparent"
           />
-          <button onClick={() => setShowAddForm(true)} className="mx-2 rounded-full bg-blue-300 shadow-md hover:bg-blue-400 text-white font-bold h-10 w-10 flex items-center justify-center">
+          <button onClick={() => setShowAddForm(!showAddForm)} className="mx-2 rounded-full bg-blue-300 shadow-md hover:bg-blue-400 text-white font-bold h-10 w-10 flex items-center justify-center">
             +
           </button>
         </div>

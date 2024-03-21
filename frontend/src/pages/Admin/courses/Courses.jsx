@@ -13,48 +13,42 @@ const Courses = () => {
   const [showAddForm, setShowAddForm] = useState(false);
 
 
-  // Function to handle search input change
   const handleSearch = (e) => {
     setSearch(e.target.value);
   };
 
-  // Function to handle new course form field changes
   const handleNewCourseChange = (e) => {
     setNewCourse({ ...newCourse, [e.target.name]: e.target.value });
   };
 
-  // Function to add a new course to the list
+
   const addCourse = () => {
     setCourses([...courses, { ...newCourse, id: courses.length + 1 }]);
     setNewCourse({ name: '', image: '', weeks: '', price: '' });
     setShowAddForm(false);
   };
 
-  // Function to update the price of a course
   const updatePrice = (id, newPrice) => {
     setCourses(courses.map((course) => (course.id === id ? { ...course, price: newPrice } : course)));
   };
 
-  // Function to delete a course from the list
   const deleteCourse = (id) => {
     setCourses(courses.filter((course) => course.id !== id));
   };
 
-  // Filtered courses based on search input value
+
   const filteredCourses = courses.filter((course) =>
     course.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // Set the width and height of the container
   const containerWidth = '100%';
   const containerHeight = '100vh';
 
-  // Set the width, height, and number of columns for the course grid
-  const gridTemplateColumns = `repeat(auto-fill, minmax(33.33%, 1fr))`;
+  const gridTemplateColumns = `repeat(3, minmax(30%, 1fr))`;
 
   return (
     <div className="flex h-screen bg-gray-100 absolute right-0 top-0 w-[83%] overflow-y-scroll">
-      <div className={`m-auto w-full max-w-xl bg-slate-200 rounded-xl p-10 ${containerWidth} ${containerHeight}`}>
+      <div className={`m-auto w-full max-w-xl bg-slate-100 rounded-xl p-10 ${containerWidth} ${containerHeight}`}>
         {/* Search bar and add course button */}
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center">
@@ -66,7 +60,7 @@ const Courses = () => {
               className="w-full shadow-md rounded-full p-3 focus:outline-none focus:ring-1 bg-stone-100 focus:ring-blue-300 focus:border-transparent"
             />
           </div>
-          <button onClick={() => setShowAddForm(true)} className="mx-2 rounded-full bg-blue-300 shadow-md hover:bg-blue-400 text-white font-bold h-10 w-10 flex items-center justify-center">
+          <button onClick={() => setShowAddForm(!showAddForm)} className="mx-2 rounded-full bg-blue-300 shadow-md hover:bg-blue-400 text-white font-bold h-10 w-10 flex items-center justify-center">
             +
           </button>
         </div>

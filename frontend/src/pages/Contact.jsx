@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 const Contact = () => {
   const [errors, setErrors] = useState({})
 
@@ -65,7 +64,6 @@ const Contact = () => {
   return (
     <>
       <div className="h-[95vh] flex justify-center items-center bg-gradient-to-r from-cyan-500 to-blue-500 ...">
-      <img src={contact} alt="A book icon" className="absolute bottom-0 left-0 w-1/4 h-1/4 bg-cover" />
         <div className="container mx-auto px-6 w-full bg-slate-100 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
           <div className="text-center mt-6 font-bold text-3xl">Contact us</div>
           <div className="mx-auto mt-8 px-4 w-full sm:mt-8 flex justify-center items-center">

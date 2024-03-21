@@ -25,17 +25,17 @@ const Sidebar = () => {
   };
 
   return (
-    <div className="bg-stone-700 h-screen w-64">
+    <div className="w-[12%] bg-teal-500 h-screen w-64 rounded-e-full">
         <div className="px-4 py-2 ">
             <Link to="/" className="text-white">
-            <img src={logo} alt="Logo" className="h-14 w-auto justify-center items-center ml-20 mt-5" />
+            <img src={logo} alt="Logo" className="h-14 w-auto justify-center items-center ml-15 mt-10 " />
             </Link>
         </div>
       <ul className="flex flex-col space-y-2 mt-10">
         {sections.map((section) => (
           <li
             key={section.name}
-            className={`px-4 py-2 rounded-md text-white hover:bg-blue-600 ${
+            className={`px-4 py-2 rounded-md text-white hover:bg-black ${
               isActive(section) ? 'bg-gray-700 text-white' : ''
             }`}
             onClick={()=> handleClick(section)}
