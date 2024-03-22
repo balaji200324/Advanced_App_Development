@@ -1,6 +1,5 @@
 package com.futurethink.service.impl;
 
-import static com.futurethink.enumerated.Role.USER;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -14,25 +13,26 @@ import org.springframework.stereotype.Service;
 import com.futurethink.dto.request.LoginRequest;
 import com.futurethink.dto.request.RegisterRequest;
 import com.futurethink.dto.response.LoginResponse;
+import com.futurethink.enumerated.Role;
 import com.futurethink.model.Token;
 import com.futurethink.model.User;
-import com.futurethink.repository.TokenRepository;
+import com.futurethink.repository.JwtRepo;
 import com.futurethink.repository.UserRepository;
-import com.futurethink.service.AuthenticationService;
-import com.futurethink.util.JwtUtil;
+import com.futurethink.service.AuthService;
+import com.futurethink.util.JwtToken;
 
 import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
 @SuppressWarnings("null")
-public class AuthenticationServiceImpl implements AuthenticationService {
+public class AuthServiceImpl implements AuthService {
 
     private final UserRepository userRepository;
-    private final TokenRepository tokenRepository;
+    private final JwtRepo tokenRepository;
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
-    private final JwtUtil jwtUtil;
+    private final JwtToken jwtUtil;
 
     @Override
     public String register(RegisterRequest registerRequest) {
@@ -40,9 +40,12 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         if (userExist.isPresent()) {
             return "User already exists with email id " + registerRequest.getEmail();
         }
-        var user = User.builder().name(registerRequest.getName()).email(registerRequest.getEmail())
+        var user = User.builder()
+                .name(registerRequest.getName())
+                .email(registerRequest.getEmail())
                 .password(passwordEncoder.encode(registerRequest.getPassword()))
-                .phoneNumber(registerRequest.getPhoneNumber()).role(USER).active(true).build();
+                .role(Role.User)
+                .build();
         userRepository.save(user);
         return "User registered successfully.";
     }
@@ -66,7 +69,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     private void revokeAllUserTokens(User user) {
-        var validUserTokens = tokenRepository.findAllByUser_IdAndExpiredFalseAndRevokedFalse(user.getId());
+        var validUserTokens = tokenRepository.findAllByUser_UidAndExpiredFalseAndRevokedFalse(user.getUid());
         if (validUserTokens.isEmpty())
             return;
         validUserTokens.forEach(token -> {

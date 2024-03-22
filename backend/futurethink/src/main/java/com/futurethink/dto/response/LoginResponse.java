@@ -3,11 +3,9 @@ package com.futurethink.dto.response;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
 @Builder
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
 public class LoginResponse {
     @Builder.Default

@@ -1,6 +1,6 @@
 package com.futurethink.model;
-import static jakarta.persistence.EnumType.STRING;
-import static jakarta.persistence.GenerationType.UUID;
+
+
 import java.util.Collection;
 import java.util.List;
 
@@ -10,35 +10,34 @@ import org.springframework.security.core.userdetails.UserDetails;
 import com.futurethink.enumerated.Role;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
-@Table(name = "_user")
+@AllArgsConstructor
+@Table(name = "ft_user")
 public class User implements UserDetails {
-    @Id
-    @GeneratedValue(strategy = UUID)
-    private String id;
-    private String name;
-    private String password;
-    private String email;
-    private String phoneNumber;
-    private String address;
-    private boolean active;
 
-    @Builder.Default
-    @Enumerated(STRING)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long uid;
+    private String name;
+    private String email;
+    private String password;
+    private String phone;
+    private String address;
+
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @OneToMany(mappedBy = "user")
@@ -50,12 +49,8 @@ public class User implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
-        return password;
-    }
-
-    @Override
     public String getUsername() {
+        // NOTE : return username, if you are using username for login instead of email
         return email;
     }
 

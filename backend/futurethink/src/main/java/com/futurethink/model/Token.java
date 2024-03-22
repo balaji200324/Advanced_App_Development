@@ -1,17 +1,16 @@
 package com.futurethink.model;
 
-import static com.futurethink.enumerated.TokenType.BEARER;
-import static jakarta.persistence.CascadeType.ALL;
-import static jakarta.persistence.EnumType.STRING;
-import static jakarta.persistence.FetchType.LAZY;
-import static jakarta.persistence.GenerationType.UUID;
 
 import com.futurethink.enumerated.TokenType;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
@@ -19,29 +18,27 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "_token")
+@Table(name = "ft_token")
 public class Token {
     @Id
-    @GeneratedValue(strategy = UUID)
+    @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @Column(unique = true)
     private String token;
 
     @Builder.Default
-    @Enumerated(STRING)
-    private TokenType tokenType = BEARER;
+    @Enumerated(EnumType.STRING)
+    private TokenType tokenType = TokenType.BEARER;
     private boolean revoked;
     private boolean expired;
 
-    @ManyToOne(fetch = LAZY, cascade = ALL)
-    @JoinColumn(name = "user_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_uid")
     private User user;
 }
