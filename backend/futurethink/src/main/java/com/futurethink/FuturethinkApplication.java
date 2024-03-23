@@ -1,4 +1,4 @@
-package com.futurethink.futurethink;
+package com.futurethink;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import axios from 'axios';
 
 const Signup = () => {
   const [username, setUsername] = useState('');
@@ -33,7 +34,9 @@ const Signup = () => {
   const isValidConfirmPassword = validateConfirmPassword(confirmPassword);
 
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if(!username || !email || !password || !confirmPassword) {
       toast.error('All fields are required');
@@ -51,10 +54,27 @@ const Signup = () => {
 
 
     if (isValidUsername && isValidEmail && isValidPassword && isValidConfirmPassword) {
-      console.log('Signed up successfully with username:', username, 'email:', email, 'and password:', password);
+
+      const user = {
+        name: username,
+        email: email,
+        password: password
+      };
+  
+      axios
+        .post('http://localhost:8080/api/auth/register', user)
+        .then((response) => {
+          setMessage(response.data.message);
+        })
+        .catch((error) => {
+          setMessage(error.response.data.message);
+        });
+  
+      console.log('Signed up successfully with username:', username, 'email:', email);
       toast.success('Signup Successful',{onClose:()=>navigate('/login'),autoClose:1000});
     }
   }
+  
 
   return (
     <>

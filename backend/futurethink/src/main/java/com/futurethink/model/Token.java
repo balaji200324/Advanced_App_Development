@@ -1,6 +1,5 @@
 package com.futurethink.model;
 
-
 import com.futurethink.enumerated.TokenType;
 
 import jakarta.persistence.CascadeType;
@@ -18,9 +17,11 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Table(name = "ft_token")
