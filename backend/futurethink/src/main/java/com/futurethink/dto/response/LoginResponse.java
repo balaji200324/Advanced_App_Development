@@ -1,5 +1,4 @@
 package com.futurethink.dto.response;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,4 +9,5 @@ import lombok.Data;
 public class LoginResponse {
     @Builder.Default
     private String accessToken = "";
+    private String userName = "";
 }

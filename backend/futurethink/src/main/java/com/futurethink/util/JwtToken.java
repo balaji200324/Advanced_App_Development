@@ -1,6 +1,5 @@
 package com.futurethink.util;
 
-
 import java.security.Key;
 import java.util.Date;
 import java.util.Map;
@@ -18,7 +17,7 @@ import io.jsonwebtoken.security.Keys;
 @Service
 public class JwtToken {
 
-    private String EKey = "3JPBqp1wnDBddOlsyn411ZrLV2etRLQ3";
+    private String EKey = "3JPBqp1wnDBddOlsyn411ZrLV2etRLQ33JPBqp1wnDBddOlsyn411ZrLV2etRLQ33JPBqp1wnDBddOlsyn411ZrLV2etRLQ3";
     // 7 Days
     // private int Duration = 604800000;
     private int Duration = 60 * 60 * 60 * 24 * 7;
