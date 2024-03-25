@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-FuturethinkApplication<futurethink>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.futurethink.FuturethinkApplication",
+            "projectName": "futurethink",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -1,5 +1,4 @@
 package com.futurethink.dto.request;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +7,9 @@ import lombok.Data;
 @Builder
 @AllArgsConstructor
 public class RegisterRequest {
+
     private String name;
     private String email;
     private String password;
-}
+
+ }

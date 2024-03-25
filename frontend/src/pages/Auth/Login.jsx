@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link,useNavigate} from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import axios from 'axios';
+import apiservice from './../../Config/Api';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -44,31 +44,26 @@ const Login = () => {
     if (validateForm()) {
       {
         try {
-          const response = await axios.post('http://localhost:8080/api/auth/signin', {
+          const response = await apiservice.post('http://localhost:8080/api/auth/login', {
             email,
             password,
           });
-          const userData = response. data;       
-          dispatch(setUser (userData));
-          const userRole = response.data.roles[0];
-    
-          switch (userRole) {
-            case 'ADMIN':
-              console.log('Logged in successfully with email:', email);
-              toast.success('Login Successful',{onClose:()=>navigate('/'),autoClose:1000});
-              navigate('/Admin/Dashboard');
-              break;
-              case 'USER':
-                console.log('Logged in successfully with email:', email);
-                toast.success('Login Successful',{onClose:()=>navigate('/'),autoClose:1000});
-                navigate('/user/Dashboard');
-              break;
-            default:
-              toast.warning("you are no a user please signup")
-              break;
+          
+          console.log('Login Response',response.data)
+
+          localStorage.setItem('token', response.data.token);  
+          localStorage.setItem('Role', response.data.role);
+          localStorage.setItem('user',JSON.stringify(response.data.uid));
+          toast.success('Login successfull',);
+          if (response.data.role === "Admin") {
+            navigate("/admin/dashboard");
+          } else if (response.data.role === "User") {
+            navigate("/user/dashboard");
           }
         } catch (error) {
           console.error(error);
+          toast.error("Invalid Credentials!");
+          toast.error("check your email and password");
         }
       }
       }
