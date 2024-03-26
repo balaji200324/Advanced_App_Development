@@ -48,7 +48,7 @@ public class UserController {
                 .orElseThrow(() -> new RuntimeException("Error: User not found."));
 
         existingUser.setName(userUpdateRequest.getName());
-        // existingUser.setEmail(userUpdateRequest.getEmail());
+        existingUser.setEmail(userUpdateRequest.getEmail());
         if (userUpdateRequest.getPassword() != null && !userUpdateRequest.getPassword().isEmpty()) {
             existingUser.setPassword(encoder.encode(userUpdateRequest.getPassword()));
         }

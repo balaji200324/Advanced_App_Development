@@ -5,7 +5,6 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import com.futurethink.dto.request.UserRequest;
 import com.futurethink.dto.request.UserUpdateRequest;
-import com.futurethink.model.Course;
 import com.futurethink.model.User;
 import com.futurethink.repository.UserRepository;
 import com.futurethink.service.UserService;
