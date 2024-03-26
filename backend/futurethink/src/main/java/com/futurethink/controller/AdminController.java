@@ -19,9 +19,11 @@ import com.futurethink.dto.request.UserUpdateRequest;
 import com.futurethink.dto.response.MessageResponse;
 import com.futurethink.enumerated.Role;
 import com.futurethink.model.Course;
+import com.futurethink.model.Enquiry;
 import com.futurethink.model.User;
 import com.futurethink.repository.UserRepository;
 import com.futurethink.service.CourseService;
+import com.futurethink.service.EnquiryService;
 import com.futurethink.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -35,6 +37,7 @@ import lombok.AllArgsConstructor;
 @Tag(name = "Admin Controls", description = "Endpoints for admin")
 public class AdminController {
     private final UserService userService;
+    private final EnquiryService enquiryService;
     private final UserRepository userRepository;
 	private final CourseService courseService;
     @Autowired
@@ -96,5 +99,11 @@ public class AdminController {
     @PreAuthorize("hasRole('Admin')")
     public List<User> getAllUsers() {
         return userService.getAllUsers();
+    }
+
+    @GetMapping("/allEnquiry")
+    @PreAuthorize("hasRole('Admin')")
+    public List<Enquiry> getAllEnquiry() {
+        return enquiryService.getAllEnquiry();
     }
 }

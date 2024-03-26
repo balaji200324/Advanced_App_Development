@@ -14,15 +14,23 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.futurethink.dto.request.EnquiryRequest;
+import com.futurethink.dto.request.RegisterRequest;
 import com.futurethink.dto.request.UserUpdateRequest;
 import com.futurethink.dto.response.MessageResponse;
 import com.futurethink.model.Course;
+import com.futurethink.model.Enquiry;
 import com.futurethink.model.User;
+import com.futurethink.repository.EnquiryRepository;
 import com.futurethink.repository.UserRepository;
 import com.futurethink.service.CourseService;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+
 
 @RestController
 @RequestMapping("/User")
@@ -30,6 +38,7 @@ import lombok.AllArgsConstructor;
 @Tag(name = "User control", description = "Endpoints for User")
 public class UserController {
     private final UserRepository userRepository;
+    private final EnquiryRepository enquiryRepository;
     private final CourseService courseService;
     @Autowired
     private final PasswordEncoder encoder;
@@ -63,4 +72,18 @@ public class UserController {
     public List<Course> getAllCoureses() {
         return courseService.getAllCourses();
     }
-}
+
+    @PostMapping("/postEnquiry")
+    @PreAuthorize("hasRole('User')")
+    public ResponseEntity<?> createEnquiry(@Valid @RequestBody EnquiryRequest enquiryRequest) {
+        Enquiry enquiry = new Enquiry();
+        enquiry.setUName(enquiryRequest.getUName());
+        enquiry.setEnquiry(enquiryRequest.getEnquiry());
+
+        enquiryRepository.save(enquiry);
+        return ResponseEntity.ok(new MessageResponse("Enquiry added Successfully!"));
+    }
+
+    
+    
+} 
