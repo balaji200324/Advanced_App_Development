@@ -37,9 +37,5 @@ public class Enquiry {
     public void setEnquiry(String enquiry) {
         Enquiry = enquiry;
     }
-    public void setWeeks(String enquiry2) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'setWeeks'");
-    }
 
 }

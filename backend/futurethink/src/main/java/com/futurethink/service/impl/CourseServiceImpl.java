@@ -15,22 +15,22 @@ import lombok.RequiredArgsConstructor;
 @Service
 @RequiredArgsConstructor
 public class CourseServiceImpl implements CourseService {
-    private final CourseRepository userRepo;
+    private final CourseRepository courseRepo;
 
     @Override
-    public void createCourse(CourseRequest userRequest)
+    public void createCourse(CourseRequest courseRequest)
     {
         Course course =new Course();
-        course.setCourseName(userRequest.getCourseName());
-        course.setWeeks(userRequest.getWeeks());
-        course.setDescrption(userRequest.getDescrption());
-        course.setPrice(userRequest.getPrice());
-        userRepo.save(course);     
+        course.setCourseName(courseRequest.getCourseName());
+        course.setWeeks(courseRequest.getWeeks());
+        course.setDescrption(courseRequest.getDescrption());
+        course.setPrice(courseRequest.getPrice());
+        courseRepo.save(course);     
     }
 
     @Override
     public void updateCourse(long cid,CourseUpdateRequest userUpdateRequest){
-        Course existingCourse=userRepo.findById(cid)
+        Course existingCourse=courseRepo.findById(cid)
         .orElseThrow(() -> new RuntimeException("User Not Found"));
         existingCourse.setCourseName(userUpdateRequest.getCourseName());
         existingCourse.setWeeks(userUpdateRequest.getWeeks());
@@ -40,11 +40,11 @@ public class CourseServiceImpl implements CourseService {
 
     @Override
     public void deleteCourse(long cid) {
-       userRepo.deleteById(cid);
+       courseRepo.deleteById(cid);
     }
 
     @Override
     public List<Course> getAllCourses() {
-        return userRepo.findAll();
+        return courseRepo.findAll();
     }
 }

@@ -9,6 +9,7 @@ public enum Access {
     ADMIN_POST("admin:create"),
     ADMIN_PUT("admin:edit"),
     ADMIN_DELETE("admin:delete"),
+    
     USER_GET("user:read"),
     USER_POST("user:create"),
     USER_PUT("user:edit"),
