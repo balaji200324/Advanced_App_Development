@@ -6,9 +6,7 @@ const Sidebar = () => {
   const [selectedSection, setSelectedSection] = useState(null);
 
   const sections = [
-    { name: 'All courses', link: '/user/dashboard' },
-      { name: 'My courses', link: '/User/mycourses' },
-      
+    { name: 'All courses', link: '/user/dashboard' },      
     { name: 'Enquiries', link: '/user/enquires'},
     { name: 'certificates', link: '/user/certificates'},
     { name: 'Profile', link: '/user/profile' },

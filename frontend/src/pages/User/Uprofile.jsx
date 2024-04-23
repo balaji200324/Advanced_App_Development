@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 
-const AProfile = () => {
+const ProfilePage = () => {
   // State variables for user data, form fields, and profile image
   const [userData, setUserData] = useState(null);
   const [name, setName] = useState('');
@@ -20,7 +20,7 @@ const AProfile = () => {
   const fetchUserData = () => {
     // Simulated user data
     const dummyUserData = {
-      name: 'Balaji',
+      name: 'balaji',
       email: 'balaji@g.com',
       dob: '2003-12-24',
       profilePicture: 'https://via.placeholder.com/150', // Placeholder profile image URL
@@ -141,4 +141,4 @@ const AProfile = () => {
   );
 };
 
-export default AProfile;
+export default ProfilePage;

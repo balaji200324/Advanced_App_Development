@@ -104,9 +104,9 @@ const UserList = () => {
                 <div>{user.email}</div>
               </div>
               <div>
-                <button onClick={() => editUser(user.id, { ...user, username: 'Updated Name' })} className="bg-orange-500 text-white px-4 py-2 rounded-md mr-2">
+                {/* <button onClick={() => editUser(user.id, { ...user, username: 'Updated Name' })} className="bg-orange-500 text-white px-4 py-2 rounded-md mr-2">
                   Edit
-                </button>
+                </button> */}
                 <button onClick={() => deleteUser(user.id)} className="bg-red-500 text-white px-4 py-2 rounded-md">
                   Delete
                 </button>

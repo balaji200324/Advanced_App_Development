@@ -17,6 +17,13 @@ import Courses from './pages/Admin/courses/Courses'
 import UserLayout from './layout/UserLayout'
 import Enquiries from './pages/Admin/AdminEnqueryResponse'
 import AdminList from './pages/Admin/AdminList'
+import MyCoursePage from './pages/User/mycourses'
+import ProfilePage from './pages/User/Uprofile'
+import PaymentHistoryPage from './pages/Admin/payment'
+import Certification from './pages/User/Ucertificates'
+import UserInquiryPage from './pages/User/AddInquery'
+import UserPaymentHistory from './pages/User/paymenthistory'
+import EnquiriesPage from './pages/Admin/AdminEnqueryResponse'
 
 
 const Signup =lazy(()=> import('./pages/Auth/Signup')) 
@@ -47,13 +54,20 @@ const App =()=> {
         <Route path="/admin/userlist" element={<UserList/>}></Route>
         <Route path="/admin/courses" element={<Courses/>}></Route>
         <Route path="/admin/profile" element={<AdminProfile/>}></Route>
-        <Route path="/admin/paymentHistory" element={<PaymentHistory/>}></Route>
-        <Route path="/admin/enquires" element={<Enquiries/>}></Route>
+        <Route path="/admin/paymentHistory" element={<PaymentHistoryPage/>}></Route>
+        <Route path="/admin/enquires" element={<EnquiriesPage/>}></Route>
       
       </Route>
 
     <Route element={<UserLayout/>}>
       <Route path="/user/dashboard" element={<UserDashboard/>}></Route>
+      <Route path="/user/mycourses" element={<MyCoursePage/>}></Route>
+      <Route path="/user/profile" element={<ProfilePage/>}></Route>
+      <Route path="/user/certificates" element={<Certification/>}></Route>
+      <Route path="/user/enquires" element={<UserInquiryPage/>}></Route>
+      <Route path="/user/paymentHistory" element={<UserPaymentHistory/>}></Route>
+    
+
     </Route>
 
     </Routes>

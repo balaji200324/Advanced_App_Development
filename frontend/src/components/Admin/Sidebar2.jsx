@@ -7,7 +7,6 @@ const Sidebar2 = () => {
 
   const sections = [
     { name: 'Dashboard', link: '/admin/dashboard' },
-    { name: 'Admin List', link: '/admin/AdminList' },
     { name: 'User List', link: '/admin/userlist' },  
     { name: 'Enquiries', link: '/admin/enquires'},
     { name: 'Courses', link: '/admin/courses'},
