@@ -7,7 +7,6 @@ import Course from './pages/Course'
 import AdminDashboard from './pages/Admin/AdminDashboard'
 import AdminLayout from './layout/AdminLayout'
 import AdminProfile from './pages/Admin/Adminprofile'
-import PaymentHistory from './pages/Admin/AdminpaymentHistory'
 import RefundPolicy from './pages/refundpolicy'
 import TermsAndConditions from './pages/termsandcondition'
 import PrivacyPolicy from './pages/privacy'
@@ -15,15 +14,14 @@ import UserDashboard from './pages/User/UserDashboard'
 import UserList from './pages/Admin/courses/UserList'
 import Courses from './pages/Admin/courses/Courses'
 import UserLayout from './layout/UserLayout'
-import Enquiries from './pages/Admin/AdminEnqueryResponse'
 import AdminList from './pages/Admin/AdminList'
-import MyCoursePage from './pages/User/mycourses'
 import ProfilePage from './pages/User/Uprofile'
 import PaymentHistoryPage from './pages/Admin/payment'
 import Certification from './pages/User/Ucertificates'
 import UserInquiryPage from './pages/User/AddInquery'
 import UserPaymentHistory from './pages/User/paymenthistory'
 import EnquiriesPage from './pages/Admin/AdminEnqueryResponse'
+import MyCoursesPage from './pages/User/mycourses'
 
 
 const Signup =lazy(()=> import('./pages/Auth/Signup')) 
@@ -61,7 +59,7 @@ const App =()=> {
 
     <Route element={<UserLayout/>}>
       <Route path="/user/dashboard" element={<UserDashboard/>}></Route>
-      <Route path="/user/mycourses" element={<MyCoursePage/>}></Route>
+      <Route path="/user/mycourses" element={<MyCoursesPage/>}></Route>
       <Route path="/user/profile" element={<ProfilePage/>}></Route>
       <Route path="/user/certificates" element={<Certification/>}></Route>
       <Route path="/user/enquires" element={<UserInquiryPage/>}></Route>

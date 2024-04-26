@@ -7,6 +7,7 @@ const Sidebar = () => {
 
   const sections = [
     { name: 'All courses', link: '/user/dashboard' },      
+    { name: 'my courses', link: '/user/mycourses' },      
     { name: 'Enquiries', link: '/user/enquires'},
     { name: 'certificates', link: '/user/certificates'},
     { name: 'Profile', link: '/user/profile' },

@@ -1,9 +1,17 @@
 package com.futurethink.dto.request;
 
+import com.futurethink.enumerated.Role;
+
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+
 public class UserRequest {
     private String name;
     private String email;
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
     public String getName() {
         return name;
@@ -22,6 +30,10 @@ public class UserRequest {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public  Role getRole() {
+        return role;
     }
     
 }

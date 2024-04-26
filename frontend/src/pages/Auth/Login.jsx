@@ -41,6 +41,14 @@ const Login = () => {
 
   const handleLogin = async () => {
 
+
+    if(localStorage.getItem("token")){
+      console.log("Token present")
+    }
+    else{
+      console.log("No token present")
+    }
+
     if (validateForm()) {
       {
         try {
@@ -51,9 +59,9 @@ const Login = () => {
           
           console.log('Login Response',response.data)
 
-          localStorage.setItem('token', response.data.token);  
+          localStorage.setItem('token', response.data.accessToken);  
           localStorage.setItem('Role', response.data.role);
-          localStorage.setItem('user',JSON.stringify(response.data.uid));
+          
           toast.success('Login successfull',);
           if (response.data.role === "Admin") {
             navigate("/admin/dashboard");
