@@ -20,9 +20,9 @@ const AProfile = () => {
   const fetchUserData = () => {
     // Simulated user data
     const dummyUserData = {
-      name: 'Balaji',
+      name: 'balaji',
       email: 'balaji@g.com',
-      dob: '2003-12-24',
+      dob: '2003-12-24',  
       profilePicture: 'https://via.placeholder.com/150', // Placeholder profile image URL
     };
     // Set user data
